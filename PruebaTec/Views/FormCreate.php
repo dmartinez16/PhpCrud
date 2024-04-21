@@ -31,7 +31,7 @@ $succesMessage = "";
     <div class="container my-5">
         <h2>Nuevo Producto</h2>
 
-        <form method="post" action="crear_producto.php">
+        <form method="post" action="../Data/DataBaseFunctions.php">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Código</label>
                 <div class="col-sm-6">
@@ -66,32 +66,20 @@ $succesMessage = "";
                         <label class="col-sm-3 col-form-label">Categoría</label>
                         <div class="col-sm-6">
                             <select class="form-select" name="fk_category" value="">
-                                <?php 
-                                $servername = "localhost";
-                                $username = "root";
-                                $password = "Dilan";
-                                $database = "products";
-
-                                // Iniciamos la conexión
-                                $connection = new mysqli($servername, $username, $password, $database);
-
-                                if ($connection->connect_error) {
-                                    die("Error de conexión a la base de datos: " . $connection->connect_error);
-                                }
-
-                                $sql = "CALL ListarCategorias()";
-                                $result = $connection->query($sql);
+                            <?php 
+                                require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/DatabaseFunctions.php";
                                 
-                                if ($result->num_rows > 0) {
-                                    while($row = $result->fetch_assoc()) {
-                                        echo '<option value="' . $row['IdCategoria'] . '">' . $row['Nombre'] . '</option>';
+                                $categories = getCategories();
+                                
+                                if (!empty($categories)) {
+                                    echo '<option value="0">Seleccione una categoría</option>';
+                                    foreach ($categories as $category) {
+                                        echo '<option value="' . $category['IdCategoria'] . '">' . $category['Nombre'] . '</option>';
                                     }
                                 } else {
                                     echo '<option value="">No hay categorías disponibles</option>';
                                 }
-
-                                $connection ->close();
-                                ?>
+                            ?>
                             </select>
                         </div>
                     </div>
@@ -101,7 +89,7 @@ $succesMessage = "";
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <button type="button" onclick="window.location.href='/PruebaTec/index.php'" class="btn btn-danger">Cancelar</button>
+                    <button type="button" onclick="window.location.href='/PhpCrud/PruebaTec/Views/index.php'" class="btn btn-danger">Cancelar</button>
                 </div>
 </div>
         </form>
