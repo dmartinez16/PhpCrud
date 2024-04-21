@@ -31,7 +31,7 @@ $succesMessage = "";
     <div class="container my-5">
         <h2>Nuevo Producto</h2>
 
-        <form method="post" action="../Data/InsertProduct.php">
+        <form method="post" action="../Data/DataBaseFunctions.php">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Código</label>
                 <div class="col-sm-6">
@@ -67,7 +67,7 @@ $succesMessage = "";
                         <div class="col-sm-6">
                             <select class="form-select" name="fk_category" value="">
                             <?php 
-                                require_once "C:/xampp/htdocs/PruebaTec/Data/DatabaseFunctions.php";
+                                require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/DatabaseFunctions.php";
                                 
                                 $categories = getCategories();
                                 
@@ -89,7 +89,7 @@ $succesMessage = "";
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <button type="button" onclick="window.location.href='/PruebaTec/Views/index.php'" class="btn btn-danger">Cancelar</button>
+                    <button type="button" onclick="window.location.href='/PhpCrud/PruebaTec/Views/index.php'" class="btn btn-danger">Cancelar</button>
                 </div>
 </div>
         </form>

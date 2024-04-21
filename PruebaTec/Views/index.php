@@ -9,7 +9,7 @@
 <body>
     <div class="container my-5">
         <h2>Lista de Productos</h2>
-        <a class="btn btn-primary" href="/PruebaTec/Views/FormCreate.php" role="button">Agregar Producto</a>
+        <a class="btn btn-primary" href="/PhpCrud/PruebaTec/Views/FormCreate.php" role="button">Agregar Producto</a>
         <br>
         <table class="table">
             <thead>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <?php 
-                require_once "C:/xampp/htdocs/PruebaTec/Data/DatabaseFunctions.php";
+                require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/DatabaseFunctions.php";
 
                 $products = getProducts();
                 
