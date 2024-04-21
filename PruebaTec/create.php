@@ -4,10 +4,6 @@ $username = "root";
 $password = "Dilan";
 $database = "products";
 
-// Iniciamos la conexión
-$connection = new mysqli($servername, $username, $password, $database);
-
-
 $category ="";
 $fecha_mod ="";
 $fecha_cre ="";
@@ -17,58 +13,6 @@ $codigo ="";
 
 $errorMessage = "";
 $succesMessage = "";
-
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $category = $_POST["fk_category"];
-    $fecha_mod = $_POST["updatedAt"];
-    $fecha_cre = $_POST["createdAt"];
-    $precio = $_POST["price"];
-    $name = $_POST["name"]; 
-    $codigo = $_POST["code"];
-}
-
-do{
-    if( empty($name) || empty($category) || empty($fecha_mod) || empty($fecha_cre) || empty($precio) ||empty($codigo) ){
-        $errorMessage = "Todos los campos son requeridos";
-        break;
-    }
-
-   $sql = "CALL CrearProducto(?, ?, ?, ?, ?, ?)";
-   $stmt = $connection->prepare($sql);
-
-   if ($stmt) {
-       // Vincular los parámetros
-       $stmt->bind_param("ssdsss", $codigo, $name, $precio, $fecha_cre, $fecha_mod, $category);
-
-       // Ejecutar el procedimiento almacenado
-       if ($stmt->execute()) {
-           $succesMessage = "El producto ha sido agregado exitosamente.";
-       } else {
-           $errorMessage = "Error al ejecutar el procedimiento almacenado: " . $stmt->error;
-       }
-
-       // Cerrar la sentencia preparada
-       $stmt->close();
-    }
-
-    if (!$result) {
-        die("Error al ejecutar la consulta: " . $connection->error);
-    }
-
-
-    $category ="";
-    $fecha_mod ="";
-    $fecha_cre ="";
-    $precio ="";
-    $name =""; 
-    $codigo ="";
-
-    $succesMessage  = "El producto a sido agregado exitosamente.";
-
-    header("location: /PruebaTec/index.php");
-    exit;
-
-} while(false);
 
 ?>
 
@@ -86,19 +30,6 @@ do{
 <body>
     <div class="container my-5">
         <h2>Nuevo Producto</h2>
-
-        <?php 
-        
-        // if(!empty($errorMessage)){
-        //     echo "
-        //     <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-        //         <strong>$errorMessage</strong>
-        //         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        //     </div>
-        //     ";
-        // }
-
-        ?>
 
         <form method="post" action="crear_producto.php">
             <div class="row mb-3">
@@ -131,29 +62,40 @@ do{
                     <input type="text" class="form-control datepicker" name="updatedAt" value="<?php echo $fecha_mod; ?>">
                 </div>
             </div>
-            <div class="row mb-3">
+                    <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">Categoría</label>
                         <div class="col-sm-6">
-                            <select class="form-select" name="fk_category" value="<?php echo $category; ?>">
-                                <option value="1">Electrónicos</option>
-                                <option value="2">Ropa</option>
+                            <select class="form-select" name="fk_category" value="">
+                                <?php 
+                                $servername = "localhost";
+                                $username = "root";
+                                $password = "Dilan";
+                                $database = "products";
+
+                                // Iniciamos la conexión
+                                $connection = new mysqli($servername, $username, $password, $database);
+
+                                if ($connection->connect_error) {
+                                    die("Error de conexión a la base de datos: " . $connection->connect_error);
+                                }
+
+                                $sql = "CALL ListarCategorias()";
+                                $result = $connection->query($sql);
+                                
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo '<option value="' . $row['IdCategoria'] . '">' . $row['Nombre'] . '</option>';
+                                    }
+                                } else {
+                                    echo '<option value="">No hay categorías disponibles</option>';
+                                }
+
+                                $connection ->close();
+                                ?>
                             </select>
                         </div>
                     </div>
 
-                    <?php 
-                    // echo "
-                    // <div class='row mb-3'>
-                    //     <div class='offset-sm-3 col-sm-6'>
-                    //         <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                    //             <strong>$succesMessage</strong>
-                    //             <button type ='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    //         </div>
-                    //     </div>
-                    // </div>";
-                    
-                    ?>
-                    
                 <div class="row mb-3">
                     <div class="offset-sm-3 col-sm-3 d-grid">
                     <button type="submit" class="btn btn-primary">Submit</button>
