@@ -1,5 +1,5 @@
     <?php
-require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/Conecction.php"; 
+require_once "../Data/Conecction.php";
 $connection = getDatabaseConnection();
 
 if(isset($_POST["registrar"])){

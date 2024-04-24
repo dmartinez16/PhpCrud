@@ -51,8 +51,7 @@
                         <div class="col-sm-6">
                             <select class="form-select" name="fk_category" value="fk_category">
                             <?php 
-                                require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/DatabaseFunctions.php";
-                                
+                                require_once "../Data/DatabaseFunctions.php";
                                 $categories = getCategories();
                                 
                                 if (!empty($categories)) {
