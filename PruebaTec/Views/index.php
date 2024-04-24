@@ -24,8 +24,7 @@
             </thead>
             <tbody>
             <?php 
-                require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/DatabaseFunctions.php";
-
+                require_once "../Data/DatabaseFunctions.php";
                 $products = getProducts();
                 
                 foreach ($products as $product) {

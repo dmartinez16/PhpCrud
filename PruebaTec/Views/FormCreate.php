@@ -1,20 +1,4 @@
-<?php 
-$servername = "localhost";
-$username = "root";
-$password = "Dilan";
-$database = "products";
-
-$category ="";
-$fecha_mod ="";
-$fecha_cre ="";
-$precio ="";
-$name =""; 
-$codigo ="";
-
-$errorMessage = "";
-$succesMessage = "";
-
-?>
+<?php $category ="";?>
 
 
 <!DOCTYPE html>
@@ -31,44 +15,43 @@ $succesMessage = "";
     <div class="container my-5">
         <h2>Nuevo Producto</h2>
 
-        <form method="post" action="../Data/DataBaseFunctions.php">
+        <form method="post" action="../Data/InsertProduct.php">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Código</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="code" value="PRD<?php echo $codigo; ?>">
+                    <input type="text" class="form-control" name="code" value="PRD">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
+                    <input type="text" class="form-control" name="name" value="">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="price" value="<?php echo $precio; ?>">
+                    <input type="text" class="form-control" name="price" value="">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Fecha de creación</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control datepicker" name="createdAt" value="<?php echo $fecha_cre; ?>">
+                    <input type="text" class="form-control datepicker" name="createdAt" value="">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Fecha de modificación</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control datepicker" name="updatedAt" value="<?php echo $fecha_mod; ?>">
+                    <input type="text" class="form-control datepicker" name="updatedAt" value="">
                 </div>
             </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">Categoría</label>
                         <div class="col-sm-6">
-                            <select class="form-select" name="fk_category" value="">
+                            <select class="form-select" name="fk_category" value="fk_category">
                             <?php 
-                                require_once "C:/xampp/htdocs/PhpCrud/PruebaTec/Data/DatabaseFunctions.php";
-                                
+                                require_once "../Data/DatabaseFunctions.php";
                                 $categories = getCategories();
                                 
                                 if (!empty($categories)) {
@@ -86,7 +69,7 @@ $succesMessage = "";
 
                 <div class="row mb-3">
                     <div class="offset-sm-3 col-sm-3 d-grid">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="registrar" value="registrar" class="btn btn-primary">Registrar</button>
                 </div>
                 <div class="col-sm-3 d-grid">
                     <button type="button" onclick="window.location.href='/PhpCrud/PruebaTec/Views/index.php'" class="btn btn-danger">Cancelar</button>

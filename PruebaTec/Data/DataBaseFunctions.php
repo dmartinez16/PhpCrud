@@ -1,5 +1,5 @@
     <?php
-        require_once "Conecction.php"; // Incluir el archivo Conecction.php
+        require_once "Conecction.php";
 
         function getCategories() {
             $connection = getDatabaseConnection();
