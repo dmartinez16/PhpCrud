@@ -33,4 +33,21 @@
             $connection->close();
             return $products;
         }
+
+        function getProductId($productId) {
+            $connection = getDatabaseConnection();
+            $sql = "CALL BuscarProducto($productId)";
+            $result = $connection->query($sql);
+        
+            $product = null;
+            if ($result && $result->num_rows > 0) {
+                $product = $result->fetch_assoc();
+            } else {
+                die("Error al ejecutar la consulta: " . $connection->error);
+            }
+        
+            $connection->close();
+            return $product;
+        }
+
     ?>
