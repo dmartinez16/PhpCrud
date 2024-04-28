@@ -20,6 +20,7 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Fecha Modificiación</th>
+                    <th>Operaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,8 +38,8 @@
                         <td>" . $product['price'] . "</td>
                         <td>" . $product['updatedAt'] . "</td>
                         <td>
-                            <a class='btn btn-primary btn-sm' href='/PruebaTec/edit.php?id=" . $product['IdProduct'] . "'>Editar</a>
-                            <a class='btn btn-danger btn-sm' href='/PruebaTec/delete.php?id=" . $product['IdProduct'] . "'>Eliminar</a>
+                            <a class='btn btn-primary btn-sm' href='/PhpCrud/PruebaTec/Views/Edit.php?id=" . $product['IdProduct'] . "'>Editar</a>
+                            <a class='btn btn-danger btn-sm' href='/PhpCrud/PruebaTec/Views/Delete.php?id=" . $product['IdProduct'] . "'>Eliminar</a>
                         </td>
                     </tr>
                     ";
