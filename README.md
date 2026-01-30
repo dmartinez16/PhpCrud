@@ -13,7 +13,6 @@ Este repositorio fue creado como **prueba técnica / práctica**, reforzando el 
 - ➕ Creación de productos (INSERT)
 - ✏️ Edición de productos (UPDATE)
 - ❌ Eliminación de productos (DELETE)
-- 🔁 Uso de métodos **GET** y **POST**
 - 🔗 Conexión centralizada a base de datos
 - 📄 Vistas separadas para cada acción
 
